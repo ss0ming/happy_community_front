@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../common/Input';
+import Button from '../common/Button';
 
 const SignupWrapper = styled.div`
     text-align: center;
@@ -37,45 +39,65 @@ const ProfileImg = styled.div`
     background-color: #C4C4C4;
 `
 
+const ButtonWrapper = styled.div`
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`
+
+const LinkStyle = styled(Link)`
+    text-decoration: none;
+    font-size 14px; 
+    font-weight: 400;
+    color: #000000;
+    margin-top: 10px;
+`
+
 function SignupForm() {
     return (
-        <div>
-            <SignupWrapper>
-                <h1>회원가입</h1>
-                <ProfileWrapper>
-                    <ProfileLabel>프로필*</ProfileLabel>
-                    <ProfileImg>+</ProfileImg>
-                </ProfileWrapper>
-                <Input
-                    name='member-email'
-                    label='이메일*'
-                    type='email'
-                    placeholder='이메일을 입력하세요'
-                    helperText='* helpre text'
+        <SignupWrapper>
+            <h1>회원가입</h1>
+            <ProfileWrapper>
+                <ProfileLabel>프로필*</ProfileLabel>
+                <ProfileImg>+</ProfileImg>
+            </ProfileWrapper>
+            <Input
+                name='member-email'
+                label='이메일*'
+                type='email'
+                placeholder='이메일을 입력하세요'
+                helperText='* helpre text'
+            />
+            <Input
+                name='member-password'
+                label='비밀번호*'
+                type='password'
+                placeholder='비밀번호를 입력하세요'
+                helperText='* helpre text'
+            />
+            <Input
+                name='member-pw-check'
+                label='비밀번호 확인*'
+                type='password'
+                placeholder='비밀번호를 한번 더 입력하세요'
+                helperText='* helpre text'
+            />
+            <Input
+                name='member-nickname'
+                label='닉네임*'
+                placeholder='닉네임을 입력하세요'
+                helperText='* helpre text'
+            />
+            <ButtonWrapper>
+                <Button
+                    buttonName="회원가입"
+                    buttonStyle="LongButton"
+                    isDisabled={true}
                 />
-                <Input
-                    name='member-password'
-                    label='비밀번호*'
-                    type='password'
-                    placeholder='비밀번호를 입력하세요'
-                    helperText='* helpre text'
-                />
-                <Input
-                    name='member-pw-check'
-                    label='비밀번호 확인*'
-                    type='password'
-                    placeholder='비밀번호를 한번 더 입력하세요'
-                    helperText='* helpre text'
-                />
-                <Input
-                    name='member-nickname'
-                    label='닉네임*'
-                    placeholder='닉네임을 입력하세요'
-                    helperText='* helpre text'
-                />
-            </SignupWrapper>
-
-        </div>
+                <LinkStyle to="/member/login">로그인하러 가기</LinkStyle>
+            </ButtonWrapper>
+        </SignupWrapper>
     )
 }
 
