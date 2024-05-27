@@ -37,9 +37,10 @@ const HelperWrapper = styled.div`
     font-size: 12px;
     font-weight: 400;
     margin-top: 3px;
+    word-break: break-all;
 `
 
-function Input({name, label, type, value, placeholder, action, helperText}) {
+function Input({name, label, type, value, placeholder, onChange, helperText}) {
     return (
         <InputWrapper>
             <Label htmlFor={name}>{label}</Label>
@@ -48,7 +49,8 @@ function Input({name, label, type, value, placeholder, action, helperText}) {
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                onChange={action}
+                onChange={onChange}
+                //onBlur={onBlur}
             />
             <HelperWrapper>{helperText}</HelperWrapper>
         </InputWrapper>
