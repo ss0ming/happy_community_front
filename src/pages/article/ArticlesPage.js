@@ -2,6 +2,7 @@ import Header from "../../components/Header"
 import styled from 'styled-components';
 import ArticleCard from "../../components/article/ArticleCard";
 import Button from "../../components/common/Button";
+import useCustomMove from "../../hooks/useCustomMove";
 
 const Wrapper = styled.div`
     display: flex;
@@ -33,6 +34,12 @@ const CardsWrapper = styled.div`
 
 const ArticlesPage = () => {
 
+    const {moveToPath} = useCustomMove();
+
+    const onClickRegisterButton = () => {
+        moveToPath("/articles/register")
+    }
+
     return (
         <div>
             <Header />
@@ -43,11 +50,13 @@ const ArticlesPage = () => {
                         buttonName='게시글 작성'
                         buttonStyle='BigButton'
                         isDisabled={false}
+                        action={onClickRegisterButton}
                     />
                 </ButtonWrapper>
                 
                 <CardsWrapper>
                     <ArticleCard
+                        id={1}
                         title={"제목"}
                         nickname={"글쓴이"}
                         createdAt={"2024-05-30 13:00:00"}
@@ -58,6 +67,7 @@ const ArticlesPage = () => {
                 </CardsWrapper>
                 <CardsWrapper>
                     <ArticleCard
+                        id={2}
                         title={"제목"}
                         nickname={"글쓴이"}
                         createdAt={"2024-05-30 13:00:00"}

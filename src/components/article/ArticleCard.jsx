@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import useCustomMove from "../../hooks/useCustomMove";
 
 const CardWrapper = styled.div`
     width: 592px;
@@ -77,7 +78,7 @@ const Name = styled.p`
 
 const backgroundColor = { background: '#FFFFFF' };
 
-function ArticleCard({ title, nickname, createdAt, likes, commentCount, viewCount }) {
+function ArticleCard({ id, title, nickname, createdAt, likes, commentCount, viewCount }) {
 
     const calculateNum = (num) => {
         if (num < 1000) {
@@ -90,8 +91,10 @@ function ArticleCard({ title, nickname, createdAt, likes, commentCount, viewCoun
         return "100k";
     }
 
+    const {moveToArticleDetail} = useCustomMove();
+
     return (
-        <CardWrapper>
+        <CardWrapper onClick={() => moveToArticleDetail(id)}>
             <TopWrapper>
                 <Title>{title}</Title>
                 <Info>
