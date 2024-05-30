@@ -1,10 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import memberRouter from "./memberRouter";
+import articleRouter from "./articleRouter";
 
 const root = createBrowserRouter([
     {
-        path: "member",
+        path: "members",
         children: memberRouter()
+    },
+    {
+        path: "articles",
+        children: articleRouter()
     }
 ])
 
