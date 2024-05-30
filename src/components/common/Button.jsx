@@ -1,7 +1,16 @@
 import styled from 'styled-components';
 
 const BigButton = styled.button`
-
+    background-color: #ACA0EB;
+    width: 138px;
+    height: 39px;
+    border: 0;
+    border-radius: 16px;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 `
 
 const SmallButton = styled.button`
