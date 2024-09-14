@@ -1,0 +1,47 @@
+const base_url = "http://localhost:8080";  // 프로토콜 'http' 추가
+
+export function requestSignup(email, password, nickname) {
+    return fetch(`${base_url}/api/user/sign-up`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password,
+            nickname: nickname,
+        }),
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+        return result;
+    })
+    .catch(error => {
+        console.error('Error during signup:', error);
+        throw error;
+    });
+}
+
+export function requestLogin(email, password) {
+    return fetch(`${base_url}/api/user/login`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            user_account: email,
+            password: password,
+        }),
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+        return result;
+    })
+    .catch(error => {
+        console.log('리퀘스트');
+        console.error('Error during login:', error);
+        throw error;
+    });
+}
