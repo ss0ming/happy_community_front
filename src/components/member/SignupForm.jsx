@@ -1,51 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Input from '../common/Input';
 import Button from '../common/Button';
 import useInput from '../../hooks/useInput';
+import { message } from 'antd';
 
 const SignupWrapper = styled.div`
     text-align: center;
-`
-
-const ProfileWrapper = styled.div`
-    justify-content: center;
-    width: 392px; 
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 10px;
-`
-
-const ProfileLabel = styled.p`
-    width: 355px;
-    display: flex;
-    text-align: left;
-    font-size: 15px;
-    font-weight: 700;
-    padding-left: 5px;
-    margin-bottom: 10px;
-`
-
-const ProfileImg = styled.div`
-    font-size: 24px;
-    border: 0;
-    width: 149px;
-    height: 149px;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    border-radius: 50%;
-    background-color: #C4C4C4;
-`
+`;
 
 const ButtonWrapper = styled.div`
     justify-content: center;
     display: flex;
     align-items: center;
     flex-direction: column;
-`
+    cursor: pointer;
+`;
 
 const LinkStyle = styled(Link)`
     text-decoration: none;
@@ -53,25 +24,48 @@ const LinkStyle = styled(Link)`
     font-weight: 400;
     color: #000000;
     margin-top: 10px;
-`
+`;
+
+function requestSignup(email, password, passwordConfirm, nickname) {
+    return fetch(`http://localhost:8080/api/user/sign-up`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email,
+            password,
+            passwordConfirm,
+            nickname,
+        }),
+    })
+    .then(response => response.json())
+    .then(result => {
+        console.log(result);
+        return result;
+    })
+    .catch(error => {
+        console.error('Error during signup:', error);
+        throw error;
+    });
+}
 
 function SignupForm() {
+    const navigate = useNavigate();
 
-    // 이메일 유효성 검사
     const validateEmail = (email) => {
         const idRegExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
         let helperText = '';
 
         if (!email) {
             helperText = '* 이메일을 입력해주세요';
-        } else if(!idRegExp.test(email)) {
+        } else if (!idRegExp.test(email)) {
             helperText = '* 올바른 이메일 주소 형식을 입력해주세요 (예: example@example.com)';
         }
 
         return helperText;
-    }
+    };
 
-    // 비밀번호 유효성 검사
     const validatePassword = (password) => {
         const pwRegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*?_]).{8,20}$/;
         let helperText = '';
@@ -83,22 +77,20 @@ function SignupForm() {
         }
 
         return helperText;
-    }
+    };
 
-    // 비밀번호 확인 유효성 검사
     const validatePwCheck = (pwCheck, password) => {
         let helperText = '';
 
         if (!pwCheck) {
-            helperText = '* 비밀번호를 한번더 입력해주세요';
+            helperText = '* 비밀번호를 한번 더 입력해주세요';
         } else if (pwCheck !== password) {
             helperText = '* 비밀번호가 일치하지 않습니다';
         }
 
         return helperText;
-    }
-    
-    // 닉네임 유효성 검사
+    };
+
     const validateNickname = (nickname) => {
         const nicknameRegExp = /[\s]/g;
         let helperText = '';
@@ -112,15 +104,13 @@ function SignupForm() {
         }
 
         return helperText;
-    }
+    };
 
-    // input - 이메일, 비밀번호
     const email = useInput('', validateEmail);
     const password = useInput('', validatePassword);
-    const pwCheck = useInput('',  validatePwCheck, password.value);
+    const pwCheck = useInput('', validatePwCheck, password.value);
     const nickname = useInput('', validateNickname);
 
-    // 버튼 상태
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     useEffect(() => {
@@ -130,16 +120,21 @@ function SignupForm() {
     }, [email.value, email.helperText, password.value, password.helperText, pwCheck.value, pwCheck.helperText, nickname.value, nickname.helperText]);
 
     const handleSignup = async (event) => {
-        // TODO: 회원가입 처리 로직
-    }
+        event.preventDefault();
+        try {
+            const result = await requestSignup(email.value, password.value, pwCheck.value, nickname.value);
+            console.log('Signup successful:', result);
+            message.success('회원가입 성공')
+            navigate('/members/login');
+        } catch (error) {
+            console.error('Signup failed:', error);
+        }
+    };
 
     return (
         <SignupWrapper>
+            {/* {contextHolder} */}
             <h1>회원가입</h1>
-            <ProfileWrapper>
-                <ProfileLabel>프로필*</ProfileLabel>
-                <ProfileImg>+</ProfileImg>
-            </ProfileWrapper>
             <Input
                 name='member-email'
                 label='이메일*'
@@ -185,7 +180,7 @@ function SignupForm() {
                 <LinkStyle to="/member/login">로그인하러 가기</LinkStyle>
             </ButtonWrapper>
         </SignupWrapper>
-    )
+    );
 }
 
 export default SignupForm;
