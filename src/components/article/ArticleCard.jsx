@@ -5,7 +5,7 @@ const CardWrapper = styled.div`
     width: 592px;
     height: 180px;
     border-radius: 16px;
-    background-color: #FFFFFF;
+    background-color: #FBF6F0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,7 +76,7 @@ const Name = styled.p`
     background-color: inherit;
 `
 
-const backgroundColor = { background: '#FFFFFF' };
+const backgroundColor = { background: '#FBF6F0' };
 
 function ArticleCard({ id, title, nickname, createdAt, likes, commentCount, viewCount }) {
 
@@ -91,7 +91,7 @@ function ArticleCard({ id, title, nickname, createdAt, likes, commentCount, view
         return "100k";
     }
 
-    const {moveToArticleDetail} = useCustomMove();
+    const { moveToArticleDetail } = useCustomMove();
 
     return (
         <CardWrapper onClick={() => moveToArticleDetail(id)}>
