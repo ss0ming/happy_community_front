@@ -1,18 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Hi+Melody&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Gaegu&family=Hi+Melody&display=swap'); */
+@font-face {
+    font-family: 'KCCMurukmuruk';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCCMurukmuruk.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
 
+  
 header {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 104px;
-    border: 1px solid #000000;
-    border-width: 0px 0px 1px 0px;
+    height: 130px;
 }
 
 .title {
-    font-family: "Gaegu", sans-serif;
+    /* font-family: "Gaegu", sans-serif; */
+    font-family: 'KCCMurukmuruk';;
     font-weight: 400;
-    font-size: 35px;
+    font-size: 50px;
 }
 

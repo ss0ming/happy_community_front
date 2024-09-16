@@ -1,3 +1,19 @@
+@font-face {
+  font-family: 'KyoboHand';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
-  background-color: #F4F5F7;
+  font-family: 'KyoboHand';
+  color: #3e3737;
+}
+
+body{ 
+  background-image: url('../src/assets/bgImage.png');
+}
+
+.ant-message {
+  font-size: 30px !important;  /* 메시지의 폰트 사이즈를 18px로 설정 */
 }

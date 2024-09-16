@@ -14,7 +14,14 @@ const BigButton = styled.button`
 `
 
 const SmallButton = styled.button`
-
+    font-size: 15px;
+    font-weight: 400;
+    text-align: center;
+    width: 50px;
+    height: 27px;
+    border-radius: 8px;
+    border: 1px solid #ACA0EB;
+    margin-left: 5px;
 `
 
 const LongButton = styled.button`
