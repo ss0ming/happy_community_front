@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const InputWrapper = styled.div`
+    width: 600px;
     justify-content: center;
-    width: 392px; 
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -10,7 +10,7 @@ const InputWrapper = styled.div`
 `
 
 const Label = styled.label`
-    width: 355px;
+    width: 600px;
     display: flex;
     text-align: left;
     font-size: 20px;
@@ -20,8 +20,8 @@ const Label = styled.label`
 `
 
 const InputBox = styled.input`
-    width: 355px;
-    height: 33px;
+    width: 590px;
+    height: 40px;
     font-size: 20px;
     font-weight: 400;
     padding-left: 5px;
@@ -37,7 +37,7 @@ const InputBox = styled.input`
 `
 
 const HelperWrapper = styled.div`
-    width: 355px;
+    width: 590px;
     height: 30px;
     text-align: left;
     color: #FF0000;
@@ -47,7 +47,7 @@ const HelperWrapper = styled.div`
     word-break: break-all;
 `
 
-function Input({name, label, type, value, placeholder, onChange, helperText}) {
+function TitleInput({name, label, type, value, placeholder, onChange, helperText}) {
     return (
         <InputWrapper>
             <Label htmlFor={name}>{label}</Label>
@@ -64,4 +64,4 @@ function Input({name, label, type, value, placeholder, onChange, helperText}) {
     )
 }
 
-export default Input;
+export default TitleInput;

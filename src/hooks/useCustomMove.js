@@ -4,7 +4,7 @@ const useCustomMove = () => {
     
     const navigate = useNavigate();
 
-    // 게시글 등록 페이지로 이동
+    // path 페이지로 이동
     const moveToPath = (path) => {
         navigate({ pathname: path })
     }
@@ -15,7 +15,13 @@ const useCustomMove = () => {
         })
     }
 
-    return { moveToPath, moveToArticleDetail };
+    const moveToArticleUpdate = (id) => {
+        navigate({
+            pathname: `/articles/${id}/edit`
+        })
+    }
+
+    return { moveToPath, moveToArticleDetail, moveToArticleUpdate };
 }
 
 export default useCustomMove;
